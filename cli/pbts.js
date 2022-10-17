@@ -178,7 +178,7 @@ exports.main = function(args, callback) {
             // https://github.com/protobufjs/protobuf.js/issues/1306#issuecomment-549204730
             output = output
                 .replace(/\[ 'object' \]\./g, "Record")
-                .replace(/\[ 'Array' \]\./g, "Array");
+                .replace(/\[ '([^']+)' \]\./g, "$1");
 
             try {
                 if (argv.out)
