@@ -175,6 +175,11 @@ exports.main = function(args, callback) {
 
             output = output.join("\n") + "\n" + out.join("");
 
+            // https://github.com/protobufjs/protobuf.js/issues/1306#issuecomment-549204730
+            output = output
+                .replace(/\[ 'object' \]\./g, "Record")
+                .replace(/\[ 'Array' \]\./g, "Array");
+
             try {
                 if (argv.out)
                     fs.writeFileSync(argv.out, output, { encoding: "utf8" });
